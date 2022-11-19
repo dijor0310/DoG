@@ -2,11 +2,11 @@ import torch
 import cv2
 import torchvision.transforms as transforms
 import argparse
-from model import CNNMOdel
+from model import CNNModel
 # construct the argument parser
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', '--input', 
-    default='input/butterflies_rev2/test/adonis/1.jpg',
+    default='.\\content\\data\\validation\\footway\\206690207942627.jpg',
     help='path to the input image')
 args = vars(parser.parse_args())
 
@@ -18,7 +18,7 @@ labels = [
     ]
 
 # initialize the model and load the trained weights
-model = CNNMOdel().to(device)
+model = CNNModel().to(device)
 checkpoint = torch.load('outputs/model.pth', map_location=device)
 model.load_state_dict(checkpoint['model_state_dict'])
 model.eval()
@@ -26,7 +26,7 @@ model.eval()
 # define preprocess transforms
 transform = transforms.Compose([
     transforms.ToPILImage(),
-    transforms.Resize((224,224)),
+    transforms.Resize((2024,2024)),
     transforms.ToTensor(),
     transforms.Normalize(
         mean=[0.5, 0.5, 0.5],
@@ -37,7 +37,7 @@ transform = transforms.Compose([
 # read and preprocess the image
 image = cv2.imread(args['input'])
 # get the ground truth class
-gt_class = args['input'].split('/')[-2]
+gt_class = args['input'].split('\\')[-2]
 orig_image = image.copy()
 # convert to RGB format
 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
