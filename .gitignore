@@ -1,7 +1,8 @@
-./hackatum/outputs/*
+.\hackatum\outputs\*
 *.pth
 *.pth
 *.jpg
 *.jpeg
 *.csv
 *.pyc
+.\deploy\__pycache__
