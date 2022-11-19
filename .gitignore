@@ -1,0 +1,6 @@
+./hackatum/outputs/*
+*.pth
+*.pth
+*.jpg
+*.jpeg
+*.csv
