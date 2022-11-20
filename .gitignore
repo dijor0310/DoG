@@ -5,3 +5,4 @@
 *.jpeg
 *.pyc
 .\deploy\__pycache__
+.\hackatum\__pycache__
